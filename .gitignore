@@ -1,0 +1,11 @@
+*.xls
+*.xlsx
+*.spec
+*.exe
+*.txt
+*.jpg
+
+
+/__pycache__/
+/build/
+/dist/
