@@ -123,13 +123,12 @@ def face_search(api_key, secret_key, group_name, img_path):
         print (response.json())
 
 if __name__ == '__main__':
-    img_path_1 = './single_photo.jpg'
-    img_path_2 = './group_photo_1.jpg'
-    img_path_mc = './mc.jpg'
+    # img_path_1 = './single_photo.jpg'
+    img_path_2 = './group_photo.jpg'
+    # img_path_mc = './mc.jpg'
     api_key = "Go6nOePIw3fw9gd0vB6T2lte"
     secret_key = "3dIF838G0FGMu2Ou8sXsTMM5SaOAlfmS"
     # face_compare(img_path_1, img_path_2, api_key, secret_key)
     # face_detection(img_path_2, api_key, secret_key)
     # face_register(api_key, secret_key, "friend", "hgc", "胡", img_path_1)
     face_search(api_key, secret_key, "friend_mc", img_path_2)
-
