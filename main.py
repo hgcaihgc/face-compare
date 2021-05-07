@@ -30,19 +30,19 @@ def get_access_token(api_key, secret_key):
         sys.exit("未获取到access_token")
 
 
-def face_compare(img_path_1, img_path_2, api_key, secret_key):
+def face_compare(img_1, img_2, api_key, secret_key):
     """人脸比对"""
     request_url = "https://aip.baidubce.com/rest/2.0/face/v3/match"
     access_token = get_access_token(api_key, secret_key)
     params = [
         {
-            "image": encode_base64(img_path_1), 
+            "image": encode_base64(img_1), 
             "image_type": "BASE64", 
             "face_type": "CERT", 
             "quality_control": "LOW"
         }, 
         {
-            "image": encode_base64(img_path_2), 
+            "image": encode_base64(img_2), 
             "image_type": "BASE64", 
             "face_type": "LIVE", 
             "quality_control": "LOW"
@@ -55,11 +55,11 @@ def face_compare(img_path_1, img_path_2, api_key, secret_key):
         print (response.json())
 
 
-def face_detection(img_path_2, api_key, secret_key):
+def face_detection(img, api_key, secret_key):
     """人脸检测"""
     request_url = "https://aip.baidubce.com/rest/2.0/face/v3/detect"
     params = {
-        "image":encode_base64(img_path_2), 
+        "image":encode_base64(img), 
         "image_type":"BASE64", 
         "face_field":"faceshape,facetype",
         "max_face_num": 6,
@@ -85,11 +85,11 @@ def create_group(api_key, secret_key, group_name):
         print (response.json())
 
 
-def face_register(api_key, secret_key, group_name, user_name, user_info, img_path):
+def face_register(api_key, secret_key, group_name, user_name, user_info, img):
     """人脸注册，同时建立用户组、用户"""
     request_url = "https://aip.baidubce.com/rest/2.0/face/v3/faceset/user/add"
     params = {
-        "image":encode_base64(img_path),
+        "image":encode_base64(img),
         "image_type":"BASE64",
         "group_id":group_name,
         "user_id":user_name,
@@ -104,11 +104,11 @@ def face_register(api_key, secret_key, group_name, user_name, user_info, img_pat
     if response:
         print (response.json())
 
-def face_search(api_key, secret_key, group_name, img_path):
+def face_search(api_key, secret_key, group_name, img):
     """人脸搜索"""
     request_url = "https://aip.baidubce.com/rest/2.0/face/v3/search"
     params = {
-        "image":encode_base64(img_path),
+        "image":encode_base64(img),
         "image_type":"BASE64",
         "group_id_list":group_name,
         "max_user_num":6,
@@ -123,12 +123,10 @@ def face_search(api_key, secret_key, group_name, img_path):
         print (response.json())
 
 if __name__ == '__main__':
-    # img_path_1 = './single_photo.jpg'
-    img_path_2 = './group_photo.jpg'
-    # img_path_mc = './mc.jpg'
+    img = './group_photo.jpg'
     api_key = "Go6nOePIw3fw9gd0vB6T2lte"
     secret_key = "3dIF838G0FGMu2Ou8sXsTMM5SaOAlfmS"
-    # face_compare(img_path_1, img_path_2, api_key, secret_key)
-    # face_detection(img_path_2, api_key, secret_key)
-    # face_register(api_key, secret_key, "friend", "hgc", "胡", img_path_1)
-    face_search(api_key, secret_key, "friend_mc", img_path_2)
+    # face_compare(img_1, img_2, api_key, secret_key)
+    # face_detection(img, api_key, secret_key)
+    # face_register(api_key, secret_key, "friend", "hgc", "胡", img)
+    face_search(api_key, secret_key, "friend_mc", img)
