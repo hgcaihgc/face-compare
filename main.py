@@ -104,6 +104,7 @@ def face_register(api_key, secret_key, group_name, user_name, user_info, img):
     if response:
         print (response.json())
 
+
 def face_search(api_key, secret_key, group_name, img):
     """人脸搜索"""
     request_url = "https://aip.baidubce.com/rest/2.0/face/v3/search"
@@ -121,6 +122,7 @@ def face_search(api_key, secret_key, group_name, img):
     response = requests.post(request_url, data=params, headers=headers)
     if response:
         print (response.json())
+
 
 if __name__ == '__main__':
     img = './group_photo.jpg'
